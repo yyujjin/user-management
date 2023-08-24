@@ -4,6 +4,7 @@ console.log(ul)
 const addButton = document.querySelector("#addButton")
 console.log(addButton)
 const inputs = document.querySelectorAll("input")
+
 const info = [
     {
         name:'박수현',
@@ -24,21 +25,40 @@ const info = [
         place : "경주"
     }
 ]
+//첫화면 
+ul.innerHTML=''
+setList()
+deleteButton()
 
+//리스트 다시작성 함수
 function setList(){
     for (let i=0; i<info.length; i++) {
         ul.innerHTML = ul.innerHTML + ` <ul class ="list">
                                         <li>이름 : ${info[i].name}</li>
                                         <li>나이 : ${info[i].age}</li>
                                         <li>직업 : ${info[i].job}</li>
-                                        <li>사는곳 : ${info[i].place}</li> <button class="deleteButton">삭제하기</button>
+                                        <li>사는곳 : ${info[i].place}</li> <button class="deleteButtons">삭제하기</button>
                                         </ul>`
     }
 }
 
-ul.innerHTML=''
-setList()
+//삭제함수 
+function deleteButton () {
+    const deleteButtons = document.querySelectorAll("deleteButtons")
+    console.log(deleteButtons)
+    for(let i = 0; i<deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener('click',function() {
+            alert("삭제하시겠습니까?")
+            info.splice(i,1)
+            ul.innerHTML = ''
+            setList()
+            
+        })
+    }
+}
 
+
+//추가버튼 함수 
 addButton.addEventListener('click',function(){
     info.push(
         {
@@ -48,6 +68,8 @@ addButton.addEventListener('click',function(){
             place : inputs[3].value
         }
     )
+    console.log(info)
     ul.innerHTML = ''
     setList()
 })
+
