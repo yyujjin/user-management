@@ -49,7 +49,7 @@ function setList(){
 
 //삭제함수 
 function deleteButton () {
-    const deleteButtons = document.querySelectorAll("deleteButtons")
+    const deleteButtons = document.querySelectorAll(".deleteButtons")
     console.log(deleteButtons)
     for(let i = 0; i<deleteButtons.length; i++) {
         deleteButtons[i].addEventListener('click',function() {
@@ -57,7 +57,7 @@ function deleteButton () {
             info.splice(i,1)
             ul.innerHTML = ''
             setList()
-            
+            deleteButton()
         })
     }
 }
@@ -76,5 +76,6 @@ addButton.addEventListener('click',function(){
     console.log(info)
     ul.innerHTML = ''
     setList()
+    deleteButton()
 })
 
