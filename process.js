@@ -31,12 +31,13 @@ const info = [
     }
 ]
 //첫화면 
-ul.innerHTML=''
+// ul.innerHTML=''
 setList()
-deleteButton()
+// deleteButton()
 
 //리스트 다시작성 함수
 function setList(){
+    ul.innerHTML=''
     for (let i=0; i<info.length; i++) {
         ul.innerHTML = ul.innerHTML + ` <ul class ="list">
                                         <li>이름 : ${info[i].name}</li>
@@ -45,6 +46,7 @@ function setList(){
                                         <li>사는곳 : ${info[i].place}</li> <button class="deleteButtons">삭제하기</button>
                                         </ul>`
     }
+    deleteButton()
 }
 
 //삭제함수 
@@ -55,9 +57,9 @@ function deleteButton () {
         deleteButtons[i].addEventListener('click',function() {
             alert("삭제하시겠습니까?")
             info.splice(i,1)
-            ul.innerHTML = ''
+            // ul.innerHTML = ''
             setList()
-            deleteButton()
+            // deleteButton()
         })
     }
 }
@@ -74,8 +76,8 @@ addButton.addEventListener('click',function(){
         }
     )
     console.log(info)
-    ul.innerHTML = ''
+    // ul.innerHTML = ''
     setList()
-    deleteButton()
+    // deleteButton()
 })
 
