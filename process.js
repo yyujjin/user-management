@@ -3,7 +3,12 @@ console.log(ul)
 
 const addButton = document.querySelector("#addButton")
 console.log(addButton)
-const inputs = document.querySelectorAll("input")
+// const inputs = document.querySelectorAll("input")
+const nameinput = document.querySelector("#name")
+const ageinput = document.querySelector("#age")
+const jobinput = document.querySelector("#job")
+const placeinput = document.querySelector("#place")
+
 
 const info = [
     {
@@ -62,10 +67,10 @@ function deleteButton () {
 addButton.addEventListener('click',function(){
     info.push(
         {
-            name : inputs[0].value,
-            age : inputs[1].value,
-            job : inputs[2].value,
-            place : inputs[3].value
+            name : nameinput.value,
+            age : ageinput.value,
+            job : jobinput.value,
+            place : placeinput.value
         }
     )
     console.log(info)
