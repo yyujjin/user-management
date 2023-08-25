@@ -5,31 +5,16 @@ const ageinput = document.querySelector("#age")
 const jobinput = document.querySelector("#job")
 const placeinput = document.querySelector("#place")
 
-const info = [
-    {
-        name: "박수현",
-        age: 29,
-        job: "programmer",
-        place: "일광",
-    },
-    {
-        name: "박유진",
-        age: 28,
-        job: null,
-        place: "수영",
-    },
-    {
-        name: "박정숙",
-        age: 26,
-        job: "공무원",
-        place: "경주",
-    },
-]
+let info = []
 
+const BASE_URL = "http://localhost:3000/user"
 setList()
 
 //리스트 다시작성 함수
-function setList() {
+async function setList() {
+    const res = await fetch(`${BASE_URL}`)
+    const data = await res.json()
+    info = data
     ul.innerHTML = ""
     for (let i = 0; i < info.length; i++) {
         ul.innerHTML += getListItemTag(i)
@@ -52,8 +37,10 @@ function deleteButton() {
     const deleteButtons = document.querySelectorAll(".deleteButtons")
     console.log(deleteButtons)
     for (let i = 0; i < deleteButtons.length; i++) {
-        deleteButtons[i].addEventListener("click", function () {
+        deleteButtons[i].addEventListener("click", async function () {
             alert("삭제하시겠습니까?")
+            console.log(info[i])
+            await fetch(`http://localhost:3000/user?id=${info[i].id}`, { method: "DELETE" })
             info.splice(i, 1)
             setList()
         })
@@ -61,7 +48,15 @@ function deleteButton() {
 }
 
 //추가버튼 함수
-addButton.addEventListener("click", function () {
+addButton.addEventListener("click", async function () {
+    console.log(nameinput)
+    await fetch(
+        `http://localhost:3000/user?name=${nameinput.value}&age=${ageinput.value}&job=${jobinput.value}&place=${placeinput.value}`,
+        {
+            method: "POST",
+        }
+    )
+
     info.push({
         name: nameinput.value,
         age: ageinput.value,
